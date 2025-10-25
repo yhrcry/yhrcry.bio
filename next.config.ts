@@ -1,12 +1,22 @@
-import type { NextConfig } from "next";
-import dotenv from "dotenv";
-
-dotenv.config({ path: ".env.local" }); 
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   experimental: {
-    optimizeCss: false, 
+    turbo: false, 
   },
+  compiler: {
+    removeConsole: false,
+  },
+ 
+  transpilePackages: [],
 };
 
 export default nextConfig;
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    optimizeCss: false,
+  },
+};
+
+module.exports = nextConfig;
