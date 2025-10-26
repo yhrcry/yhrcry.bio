@@ -22,9 +22,11 @@ export default function RootLayout({
       <body
         className={`${hinaMincho.className} min-h-screen bg-gradient-to-b from-[#0a1b3d] to-[#020617] text-gray-100 relative overflow-hidden`}
       >
-        {/* 星空の粒子背景 */}
-        <div className="absolute inset-0 overflow-hidden z-0">
-          <div className="absolute w-[200%] h-[200%] bg-[radial-gradient(white_1px,transparent_1px)] opacity-15 animate-[twinkle_100s_linear_infinite]" />
+        {/* 星空レイヤー */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+           {Array.from({ length: 10 }).map((_, i) => (
+            <div key={i} className="star"></div>
+            ))}
         </div>
 
         {/* メインコンテンツ */}
