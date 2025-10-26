@@ -32,11 +32,10 @@ export default async function Home() {
             <div className="flex justify-center gap-5 mt-4 flex-wrap">
               {bio.sns.map((item: any) => {
                 const label = item.label?.toLowerCase();
-                const icons: Record<string, React.ReactElement> = {
+                const icons: Record<string, JSX.Element> = {
                   twitter: <FaTwitter />,
                   instagram: <FaInstagram />,
                 };
-
                 const icon = icons[label] || <FaLink />;
 
                 return (
