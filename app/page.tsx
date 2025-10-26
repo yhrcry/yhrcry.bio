@@ -1,5 +1,6 @@
 import { getBio } from "../lib/microcms";
 import { FaTwitter, FaInstagram, FaLink } from "react-icons/fa";
+import type { ReactElement } from "react";
 
 export default async function Home() {
   const bio = await getBio();
@@ -32,10 +33,11 @@ export default async function Home() {
             <div className="flex justify-center gap-5 mt-4 flex-wrap">
               {bio.sns.map((item: any) => {
                 const label = item.label?.toLowerCase();
-                const icons: Record<string, JSX.Element> = {
+                const icons: Record<string, ReactElement> = {
                   twitter: <FaTwitter />,
                   instagram: <FaInstagram />,
                 };
+
                 const icon = icons[label] || <FaLink />;
 
                 return (
