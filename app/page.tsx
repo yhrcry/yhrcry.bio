@@ -26,16 +26,17 @@ export default async function Home() {
           dangerouslySetInnerHTML={{ __html: bio.bio }}
         />
 
-       {/* SNSリンク */}  
-       {bio.sns && bio.sns.length > 0 && (
+        {/* SNSリンク */}
+        {bio.sns && bio.sns.length > 0 && (
           <div className="mt-6 border-t border-white/40 pt-4">
             <div className="flex justify-center gap-5 mt-4 flex-wrap">
               {bio.sns.map((item: any) => {
                 const label = item.label?.toLowerCase();
-                const icons: Record<string, JSX.Element> = {
+                const icons: Record<string, React.ReactElement> = {
                   twitter: <FaTwitter />,
                   instagram: <FaInstagram />,
                 };
+
                 const icon = icons[label] || <FaLink />;
 
                 return (
