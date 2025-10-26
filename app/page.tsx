@@ -22,10 +22,12 @@ export default async function Home() {
         </div>
 
         {/* 自己紹介 */}
-        <div
-          className="text-gray-700 text-[15px] sm:text-[16px] leading-relaxed space-y-3 text-left mb-6"
-          dangerouslySetInnerHTML={{ __html: bio.bio }}
-        />
+        {bio.bio && (
+          <div
+            className="text-gray-700 text-[15px] sm:text-[16px] leading-relaxed space-y-3 text-left mb-6"
+            dangerouslySetInnerHTML={{ __html: bio.bio }}
+          />
+        )}
 
         {/* SNSリンク */}
         {bio.sns && bio.sns.length > 0 && (
@@ -37,7 +39,6 @@ export default async function Home() {
                   twitter: <FaTwitter />,
                   instagram: <FaInstagram />,
                 };
-
                 const icon = icons[label] || <FaLink />;
 
                 return (
