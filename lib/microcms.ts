@@ -7,7 +7,7 @@ export const client = createClient({
 
 export const getBio = async () => {
   try {
-    const data = await client.getObject({
+    const data = await client.get({
       endpoint: "bio",
     });
     return data;
