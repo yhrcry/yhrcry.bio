@@ -1,24 +1,15 @@
 import "./globals.css";
-import { Noto_Sans_JP } from "next/font/google";
-
-const notoSans = Noto_Sans_JP({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-});
+import { ReactNode } from "react";
 
 export const metadata = {
   title: "Kurumi Wakatsuki",
-  description: "プロフィールサイト",
+  description: "Kurumi Wakatsuki | Profile Site",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ja">
-      <body className={`${notoSans.className} bg-gradient-to-b from-white to-blue-50`}>
+      <body className="starry-bg">
         {children}
       </body>
     </html>

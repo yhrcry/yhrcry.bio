@@ -3,38 +3,28 @@
 @tailwind utilities;
 
 body {
-  background: linear-gradient(135deg, #dbeafe 0%, #ede9fe 50%, #e0f2fe 100%);
+  @apply text-gray-100 bg-gradient-to-b from-[#020617] via-[#0b1b3f] to-[#172554] min-h-screen;
   background-attachment: fixed;
+  font-family: 'Poppins', 'Noto Sans JP', sans-serif;
+  overflow-x: hidden;
 }
 
-.glass-highlight {
-  position: relative;
-  overflow: hidden;
-}
-
-.glass-highlight::before {
+.starry-bg::before {
   content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 200%;
   height: 200%;
-  background: linear-gradient(
-    120deg,
-    rgba(255, 255, 255, 0.3) 0%,
-    rgba(255, 255, 255, 0.15) 25%,
-    rgba(255, 255, 255, 0) 60%
-  );
-  transform: rotate(25deg);
-  animation: shine 6s infinite linear;
-  pointer-events: none;
+  background: radial-gradient(white 1px, transparent 1px);
+  background-size: 3px 3px;
+  opacity: 0.4;
+  animation: twinkle 8s linear infinite;
+  transform: translate(-25%, -25%);
+  z-index: -1;
 }
 
-@keyframes shine {
-  0% {
-    transform: translateX(-100%) rotate(25deg);
-  }
-  100% {
-    transform: translateX(100%) rotate(25deg);
-  }
+@keyframes twinkle {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
 }
