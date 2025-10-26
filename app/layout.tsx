@@ -24,10 +24,11 @@ export default function RootLayout({
       >
         {/* 星空レイヤー */}
         <div className="absolute inset-0 z-0 overflow-hidden">
-           {Array.from({ length: 10 }).map((_, i) => (
+           {Array.from({ length: 40 }).map((_, i) => (
             <div key={i} className="star"></div>
-            ))}
+          ))}
         </div>
+
 
         {/* メインコンテンツ */}
         <main className="relative z-10 flex flex-col items-center justify-center px-6 py-20 animate-fade-in">
