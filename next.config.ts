@@ -1,22 +1,9 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  experimental: {
-    turbo: false, 
-  },
-  compiler: {
-    removeConsole: false,
-  },
- 
-  transpilePackages: [],
-};
+import type { NextConfig } from "next";
 
-export default nextConfig;
-
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
   experimental: {
     optimizeCss: false,
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
