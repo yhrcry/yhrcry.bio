@@ -10,7 +10,7 @@ export const getBio = async () => {
     const data = await client.get({
       endpoint: "bio",
     });
-    return data;
+    return data.contents[0];
   } catch (error) {
     console.error("microCMS fetch error:", error);
     throw new Error("Failed to fetch bio data from microCMS");
