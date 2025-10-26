@@ -2,12 +2,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   experimental: {
-    turbo: false,
-    optimizeCss: false, // LightningCSS無効化
+    optimizeCss: false,
   },
+
   compiler: {
     removeConsole: false,
   },
+
   transpilePackages: [],
 };
 
