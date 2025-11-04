@@ -3,40 +3,23 @@ import { useEffect, useState } from "react";
 
 export default function StarryBackground() {
   const [stars, setStars] = useState<JSX.Element[]>([]);
-
   useEffect(() => {
     const totalStars = 150;
-    const newStars = [];
-    for (let i = 0; i < totalStars; i++) {
-      const size = Math.random() * 2 + 1;
-      const x = Math.random() * 100;
-      const y = Math.random() * 100;
-      const delay = Math.random() * 5;
-      const duration = 3 + Math.random() * 4;
-      newStars.push(
-        <div
-          key={i}
-          className="star"
-          style={{
-            top: `${y}%`,
-            left: `${x}%`,
-            width: `${size}px`,
-            height: `${size}px`,
-            animationDelay: `${delay}s`,
-            animationDuration: `${duration}s`,
-          }}
-        />
-      );
-    }
-    setStars(newStars);
+    const starElements = Array.from({ length: totalStars }, (_, i) => (
+      <div
+        key={i}
+        className="absolute bg-white rounded-full opacity-70"
+        style={{
+          top: `${Math.random() * 100}%`,
+          left: `${Math.random() * 100}%`,
+          width: `${Math.random() * 2 + 1}px`,
+          height: `${Math.random() * 2 + 1}px`,
+          animation: `twinkle ${2 + Math.random() * 3}s infinite ease-in-out`
+        }}
+      />
+    ));
+    setStars(starElements);
   }, []);
 
-  return (
-    <div
-      className="fixed inset-0 z-0 pointer-events-none"
-      style={{ overflow: "hidden" }}
-    >
-      {stars}
-    </div>
-  );
+  return <div className="absolute inset-0 overflow-hidden">{stars}</div>;
 }
