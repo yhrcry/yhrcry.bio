@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getBlogs } from "../../lib/microcms";
+import { getBlogs } from "@/lib/microcms";
 
 export const revalidate = 60;
 

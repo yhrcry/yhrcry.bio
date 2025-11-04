@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getProfile } from "../../lib/microcms";
+import { getProfile } from "@/lib/microcms";
 import { FaTwitter, FaInstagram } from "react-icons/fa";
 import Link from "next/link";
 

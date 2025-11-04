@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getBlogBySlug, getBlogs } from "../../lib/microcms";
+import { getBlogBySlug, getBlogs } from "@/lib/microcms";
 
 type Props = {
   params: Promise<{ slug: string }>;

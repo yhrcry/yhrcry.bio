@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getProfile } from "../../lib/microcms";
+import { getProfile } from "@/lib/microcms";
 
 export default async function Home() {
   const data = await getProfile();
