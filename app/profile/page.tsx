@@ -1,53 +1,65 @@
-"use client";
-
-import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { getProfile } from "../../lib/microcms";
+import { FaTwitter, FaInstagram } from "react-icons/fa";
+import Link from "next/link";
 
-export default function Home() {
+export default async function ProfilePage() {
+  const data = await getProfile();
+  const profile = data.contents ? data.contents[0] : data; // ←ここ重要
+
+  if (!profile) {
+    return <p className="text-center text-gray-400 mt-10">プロフィールが見つかりませんでした。</p>;
+  }
+
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden text-white bg-gradient-to-b from-[#020617] to-[#0b1b33]">
-      {/* 背景 */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,#1a2752_0%,#020617_100%)]">
-        <div className="absolute w-full h-full bg-[url('/stars.svg')] bg-cover bg-center opacity-60 animate-[float_60s_linear_infinite]"></div>
+    <main className="flex flex-col items-center justify-center min-h-screen text-white">
+      {/* プロフィール画像 */}
+      <div className="mb-6">
+        <Image
+          src={profile.avatar?.url}
+          alt={profile.name}
+          width={120}
+          height={120}
+          className="rounded-full border border-gray-600"
+        />
       </div>
 
-      {/* 光るカード */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-        whileHover={{ scale: 1.04 }}
-        className="z-10 flex flex-col items-center p-12 rounded-3xl backdrop-blur-2xl bg-white/10 border border-white/20 shadow-[0_0_40px_rgba(150,180,255,0.3)] hover:shadow-[0_0_60px_rgba(180,200,255,0.5)] transition-all duration-700"
-      >
-        <Image
-          src="/your-avatar.png"
-          alt="Kurumi W"
-          width={170}
-          height={170}
-          className="rounded-full border border-white/40 shadow-[0_0_30px_rgba(255,255,255,0.3)]"
-        />
-        <h1 className="mt-6 text-3xl font-bold tracking-wide">
-          Kurumi Wakatsuki
-        </h1>
-        <div className="flex gap-8 mt-6 text-gray-300 text-lg">
-          <Link
-            href="/blog"
-            className="hover:text-white hover:underline underline-offset-4 transition"
-          >
-            Blog
-          </Link>
-          <Link
-            href="/profile"
-            className="hover:text-white hover:underline underline-offset-4 transition"
-          >
-            Profile
-          </Link>
-        </div>
-      </motion.div>
+      {/* 名前 */}
+      <h1 className="text-2xl font-bold mb-6">{profile.name}</h1>
 
-      {/* 下の青い発光ライン */}
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500/50 to-transparent blur-md"></div>
+      {/* 自己紹介 */}
+      <div
+        className="text-gray-300 leading-relaxed max-w-lg text-left mb-10"
+        dangerouslySetInnerHTML={{ __html: profile.bio }}
+      />
+
+      {/* SNSリンク（アイコン付き） */}
+      <div className="flex gap-6">
+        {profile.sns?.map((sns: any) => {
+          let Icon;
+          switch (sns.label.toLowerCase()) {
+            case "twitter":
+              Icon = FaTwitter;
+              break;
+            case "instagram":
+              Icon = FaInstagram;
+              break;
+            default:
+              return null;
+          }
+          return (
+            <Link
+              key={sns.url}
+              href={sns.url}
+              target="_blank"
+              className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-full"
+            >
+              <Icon />
+              <span>{sns.label}</span>
+            </Link>
+          );
+        })}
+      </div>
     </main>
   );
 }
