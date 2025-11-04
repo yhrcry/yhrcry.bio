@@ -5,14 +5,17 @@ export const client = createClient({
   apiKey: process.env.MICROCMS_API_KEY || "",
 });
 
-export const getBio = async () => {
-  try {
-    const data = await client.get({
-      endpoint: "bio",
-    });
-    return data.contents[0];
-  } catch (error) {
-    console.error("microCMS fetch error:", error);
-    throw new Error("Failed to fetch bio data from microCMS");
-  }
-};
+export async function getProfile() {
+  return await client.get({ endpoint: "bio" });
+}
+
+export async function getBlogs() {
+  return await client.get({ endpoint: "blogs" });
+}
+
+export async function getBlogBySlug(slug: string) {
+  return await client.getListDetail({
+    endpoint: "blogs",
+    contentId: slug,
+  });
+}

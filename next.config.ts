@@ -1,15 +1,10 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  experimental: {
-    optimizeCss: false,
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "images.microcms-assets.io" },
+    ],
   },
-
-  compiler: {
-    removeConsole: false,
-  },
-
-  transpilePackages: [],
 };
 
-export default nextConfig;
+module.exports = nextConfig;
