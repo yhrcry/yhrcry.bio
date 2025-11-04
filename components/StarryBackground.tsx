@@ -2,7 +2,8 @@
 import { useEffect, useState } from "react";
 
 export default function StarryBackground() {
-  const [stars, setStars] = useState<JSX.Element[]>([]);
+  const [stars, setStars] = useState<React.ReactNode[]>([]);
+
   useEffect(() => {
     const totalStars = 150;
     const starElements = Array.from({ length: totalStars }, (_, i) => (
